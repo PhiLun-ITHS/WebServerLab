@@ -1,4 +1,6 @@
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
 
@@ -11,7 +13,22 @@ public class Client {
 
             var output = new PrintWriter(socket.getOutputStream());
             output.println("hej from client");
+            output.println();
+
             output.flush();
+
+            var inputFromServer = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+            while(true){
+                var line = inputFromServer.readLine();
+                if(line == null || line.isEmpty()){
+                    break;
+                }
+                System.out.println(line);
+            }
+            inputFromServer.close();
+            output.close();
+            socket.close();
 
         } catch (IOException e) {
             e.printStackTrace();
