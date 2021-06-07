@@ -43,7 +43,9 @@ public class Main {
     }
 
     private static void sendResponse(PrintWriter outputToClient) {
-        //  outputToClient.print("HTTP/1.1 404 Not Found\r\nContent-length: 0\r\n\r\n");
+
+        outputToClient.print("HTTP/1.1 404 Not Found\r\nContent-length: 0\r\n\r\n");
+
         synchronized (billboard) {
             for (String line : billboard) {
                 outputToClient.print(line + "\r\n");
@@ -69,9 +71,3 @@ public class Main {
         }
     }
 }
-
-/*
-System.out.println(client.getInetAddress());
-            System.out.println(Thread.currentThread().getName());
-            Thread.sleep(500);
- */
