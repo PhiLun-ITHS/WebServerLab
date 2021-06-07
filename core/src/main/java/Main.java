@@ -8,32 +8,38 @@ import java.net.Socket;
 public class Main {
 
     public static void main(String[] args) {
+        openSocket();
+    }
 
+    private static void openSocket() {
         try(ServerSocket serverSocket = new ServerSocket(5050)){
 
-            while(true){
+            while(true) {
                 Socket client = serverSocket.accept();
-                System.out.println(client.getInetAddress());
-
-                var inputFromClient = new BufferedReader(new InputStreamReader(client.getInputStream()));
-
-                while(true){
-                    var line = inputFromClient.readLine();
-                    if (line == null || line.isEmpty()){
-                        break;
-                    }
-                    System.out.println(line);
-                }
-                var outputToClient = new PrintWriter(client.getOutputStream());
-                outputToClient.print("HTTP/1.1 404 Not Found\r\nContent-length: 0\r\n\r\n");
-                outputToClient.flush();
-                inputFromClient.close();
-                outputToClient.close();
-                client.close();
+                handleConnection(client);
             }
         } catch (IOException e){
             e.printStackTrace();
         }
+    }
 
+    private static void handleConnection(Socket client) throws IOException{
+
+        System.out.println(client.getInetAddress());
+        var inputFromClient = new BufferedReader(new InputStreamReader(client.getInputStream()));
+
+        while(true){
+            var line = inputFromClient.readLine();
+            if (line == null || line.isEmpty()){
+                break;
+            }
+            System.out.println(line);
+        }
+        var outputToClient = new PrintWriter(client.getOutputStream());
+        outputToClient.print("HTTP/1.1 404 Not Found\r\nContent-length: 0\r\n\r\n");
+        outputToClient.flush();
+        inputFromClient.close();
+        outputToClient.close();
+        client.close();
     }
 }
