@@ -11,8 +11,6 @@ public class Client {
             Socket socket = new Socket("localhost", 5050);
 
             var output = new PrintWriter(socket.getOutputStream());
-            output.println("Hello from client");
-            output.println();
 
             output.flush();
 

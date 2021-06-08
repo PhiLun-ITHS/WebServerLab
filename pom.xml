@@ -11,6 +11,7 @@
         <module>core</module>
         <module>utils</module>
         <module>client</module>
+        <module>Entity</module>
     </modules>
     <packaging>pom</packaging>
     <name>parent-project</name>
