@@ -11,13 +11,14 @@ public class Connection {
             var url = Request.readRequest(inputFromClient);
 
             var outputToClient = client.getOutputStream();
-
-            if (url.equals("/cat.jpg")){
-                Response.sendImageResponse(outputToClient);
-            } else if (url.equals("/newspaper")){
-                Response.sendJsonResponse(outputToClient);
-            } else {
-                Response.sendTextResponse(outputToClient);
+            switch (url) {
+                case "/", "/index.html" -> Response.sendIndexResponse(outputToClient);
+                case "/cat.jpg" -> Response.sendImageResponse(outputToClient);
+                case "/newspaper" -> JsonResponse.sendJsonResponse(outputToClient);
+                case "/addArticle" -> JsonResponse.sendJsonAddResponse(outputToClient);
+                case "/deleteArticle" -> JsonResponse.sendJsonDeleteResponse(outputToClient);
+                case "/updateArticle" -> JsonResponse.sendJsonUpdateResponse(outputToClient);
+                default -> Response.sendFaultResponse(outputToClient);
             }
             inputFromClient.close();
             outputToClient.close();
