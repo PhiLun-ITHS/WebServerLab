@@ -1,15 +1,8 @@
-import java.util.Scanner;
+/*import java.util.Scanner;
 
 public class Menu {
 
     static Scanner sc = new Scanner(System.in);
-
-
-    public static void main(String[] args) {
-        Menu menu = new Menu();
-        menu.menu();
-    }
-
 
     public void menu() {
 
@@ -48,4 +41,6 @@ public class Menu {
         }
     }
 }
+
+ */
 
