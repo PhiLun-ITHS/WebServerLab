@@ -23,12 +23,30 @@ public class Response {
         handleResponse(outputToClient, header, data, f);
     }
 
+    static void sendFormResponse(OutputStream outputToClient) throws IOException {
+
+        String header = "";
+        byte[] data = new byte[0];
+
+        File f = Path.of("core/src/main/resources/dbForm.html").toFile();
+        handleResponse(outputToClient, header, data, f);
+    }
+
     static void sendImageResponse(OutputStream outputToClient) throws IOException {
 
         String header = "";
         byte[] data = new byte[0];
 
         File f = Path.of("core/target/classes/cat.jpg").toFile();
+        handleResponse(outputToClient, header, data, f);
+    }
+
+    public static void sendPdfResponse(OutputStream outputToClient) throws IOException {
+
+        String header = "";
+        byte[] data = new byte[0];
+
+        File f = Path.of("core/src/main/resources/lab1.pdf").toFile();
         handleResponse(outputToClient, header, data, f);
     }
 
@@ -53,4 +71,6 @@ public class Response {
 
         outputToClient.flush();
     }
+
+
 }

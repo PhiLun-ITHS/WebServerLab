@@ -20,10 +20,15 @@ public class EntityFunctions {
         return newspaper;
     }
 
-    public Newspaper addArticle() {
+    public static void addArticle(Newspaper newspaper) {
 
         EntityManager em = emf.createEntityManager();
 
+        em.getTransaction().begin();
+        em.persist(newspaper);
+        em.getTransaction().commit();
+        em.close();
+        /*
         System.out.print("Article title: ");
         String articleTitle = sc.nextLine();
 
@@ -31,22 +36,12 @@ public class EntityFunctions {
         String articleText = sc.nextLine();
 
         Newspaper n = new Newspaper(articleTitle, articleText);
-
-        em.getTransaction().begin();
-        em.persist(n);
-        em.getTransaction().commit();
-        em.close();
-
-        return null;
+*/
     }
 
-    public Newspaper deleteArticle(){
+    public static void deleteArticle(int id){
 
         EntityManager em = emf.createEntityManager();
-
-        System.out.print("Article ID: ");
-        int id = sc.nextInt();
-        sc.nextLine();
 
         Newspaper n = em.find(Newspaper.class, id);
 
@@ -54,14 +49,25 @@ public class EntityFunctions {
         em.remove(n);
         em.getTransaction().commit();
         em.close();
+        /*
+        System.out.print("Article ID: ");
+        int id = sc.nextInt();
+        sc.nextLine();
 
-        return null;
+
+
+         */
     }
 
-    public Newspaper updateArticle(){
+    public static void updateArticle(Newspaper newspaper, String newArticleName){
 
         EntityManager em = emf.createEntityManager();
 
+        em.getTransaction().begin();
+        newspaper.setArticle(newArticleName);
+        em.getTransaction().commit();
+        em.close();
+        /*
         System.out.print("ID: ");
         int id = sc.nextInt();
         sc.nextLine();
@@ -71,18 +77,19 @@ public class EntityFunctions {
         System.out.print("New Article Title: ");
         String newArticleName = sc.nextLine();
 
-        em.getTransaction().begin();
-        n.setArticle(newArticleName);
-        em.getTransaction().commit();
-        em.close();
-
-        return null;
+         */
     }
 
-    public Newspaper updateText(){
+    public static void updateText(Newspaper newspaper, String newTextName){
 
         EntityManager em = emf.createEntityManager();
 
+        em.getTransaction().begin();
+        newspaper.setText(newTextName);
+        em.getTransaction().commit();
+        em.close();
+
+        /*
         System.out.println("ID: ");
         int id = sc.nextInt();
         sc.nextLine();
@@ -92,11 +99,6 @@ public class EntityFunctions {
         System.out.println("New Article Text: ");
         String newTextName = sc.nextLine();
 
-        em.getTransaction().begin();
-        n.setText(newTextName);
-        em.getTransaction().commit();
-        em.close();
-
-        return null;
+         */
     }
 }

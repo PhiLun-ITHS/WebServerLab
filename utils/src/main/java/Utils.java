@@ -1,9 +1,9 @@
 
 public class Utils {
 
-    public static Request parseHttpRequest(String input) {
+    public static RequestType parseHttpRequest(String input) {
 
-        var request = new Request();
+        var request = new RequestType();
         request.type = parseHttpRequestType(input);
         request.url = parseUrl(input);
         return request;
@@ -26,7 +26,7 @@ public class Utils {
         }
     }
 
-    public static String handleRequest(Request request) {
+    public static String handleRequest(RequestType request) {
         return switch (request.type) {
             case GET -> "GET";
             case HEAD -> "HEAD";

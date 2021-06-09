@@ -11,15 +11,20 @@ public class Connection {
             var url = Request.readRequest(inputFromClient);
 
             var outputToClient = client.getOutputStream();
+
             switch (url) {
                 case "/", "/index.html" -> Response.sendIndexResponse(outputToClient);
                 case "/cat.jpg" -> Response.sendImageResponse(outputToClient);
+                case "/lab1.pdf" -> Response.sendPdfResponse(outputToClient);
                 case "/newspaper" -> JsonResponse.sendJsonResponse(outputToClient);
+                case "/addForm" -> Response.sendFormResponse(outputToClient);
                 case "/addArticle" -> JsonResponse.sendJsonAddResponse(outputToClient);
                 case "/deleteArticle" -> JsonResponse.sendJsonDeleteResponse(outputToClient);
-                case "/updateArticle" -> JsonResponse.sendJsonUpdateResponse(outputToClient);
+                case "/updateArticleTitle" -> JsonResponse.sendJsonUpdateResponse(outputToClient);
+                case "/updateArticleText" -> JsonResponse.sendJsonUpdateTextResponse(outputToClient);
                 default -> Response.sendFaultResponse(outputToClient);
             }
+
             inputFromClient.close();
             outputToClient.close();
             client.close();

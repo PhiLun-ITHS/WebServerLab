@@ -1,5 +1,5 @@
 
-public class Request {
+public class RequestType {
     HTTPType type;
     String url;
 }

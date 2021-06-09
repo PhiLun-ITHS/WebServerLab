@@ -35,4 +35,8 @@ public class JsonResponse {
     public static void sendJsonUpdateResponse(OutputStream outputToClient) {
 
     }
+
+    public static void sendJsonUpdateTextResponse(OutputStream outputToClient) {
+
+    }
 }

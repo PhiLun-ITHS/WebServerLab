@@ -14,7 +14,6 @@ public class Request {
             } if (line == null || line.isEmpty()){
                 break;
             }
-            System.out.println(line);
         }
         return url;
     }
