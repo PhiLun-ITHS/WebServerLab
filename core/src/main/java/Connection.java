@@ -18,10 +18,10 @@ public class Connection {
                 case "/lab1.pdf" -> Response.sendPdfResponse(outputToClient);
                 case "/newspaper" -> JsonResponse.sendJsonResponse(outputToClient);
                 case "/addForm" -> Response.sendFormResponse(outputToClient);
-                case "/addArticle" -> JsonResponse.sendJsonAddResponse(outputToClient);
-                case "/deleteArticle" -> JsonResponse.sendJsonDeleteResponse(outputToClient);
-                case "/updateArticleTitle" -> JsonResponse.sendJsonUpdateResponse(outputToClient);
-                case "/updateArticleText" -> JsonResponse.sendJsonUpdateTextResponse(outputToClient);
+                //case "/addArticle" -> JsonResponse.sendJsonAddResponse(outputToClient);
+                //case "/deleteArticle" -> JsonResponse.sendJsonDeleteResponse(outputToClient);
+                //case "/updateArticleTitle" -> JsonResponse.sendJsonUpdateResponse(outputToClient);
+                //case "/updateArticleText" -> JsonResponse.sendJsonUpdateTextResponse(outputToClient);
                 default -> Response.sendFaultResponse(outputToClient);
             }
 
