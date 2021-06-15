@@ -10,13 +10,11 @@ public class Connection {
         try {
             var inputFromClient = new BufferedReader(new InputStreamReader((client.getInputStream())));
 
-            var url = Request.newRequest(inputFromClient);
+            var url = Request.readRequest(inputFromClient);
 
             var outputToClient = client.getOutputStream();
 
             checkUrl(outputToClient, url);
-            var sendResponse = Response.sendResponse(outputToClient);
-
 
             inputFromClient.close();
             outputToClient.close();
@@ -30,9 +28,21 @@ public class Connection {
     private static void checkUrl(OutputStream outputToClient, String url) throws IOException {
 
         if (url.equals("/newspaper")){
-            JsonResponse.sendNewspaperResponse(outputToClient);
+            Response.sendNewspaperResponse(outputToClient);
         } else if (url.equals("/add")){
-            JsonResponse.sendAddResponse(outputToClient);
+            Response.sendAddResponse(outputToClient, url);
+        } else if (url.contains(".png")){
+            Response.sendPngResponse(outputToClient, url);
+        } else if (url.contains(".jpg")){
+            Response.sendJpgResponse(outputToClient, url);
+        } else if (url.contains(".pdf")){
+            Response.sendPdfResponse(outputToClient, url);
+        } else if (url.equals("/")){
+            Response.sendDefaultResponse(outputToClient);
+        } else if (url.equals("/index.html")){
+            Response.sendDefaultResponse(outputToClient);
+        } else {
+            Response.sendFaultResponse(outputToClient);
         }
     }
 }
