@@ -1,6 +1,7 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.net.Socket;
 
 public class Connection {
@@ -8,22 +9,14 @@ public class Connection {
     static void handleConnection(Socket client) {
         try {
             var inputFromClient = new BufferedReader(new InputStreamReader((client.getInputStream())));
-            var url = Request.readRequest(inputFromClient);
+
+            var url = Request.newRequest(inputFromClient);
 
             var outputToClient = client.getOutputStream();
 
-            switch (url) {
-                case "/", "/index.html" -> Response.sendIndexResponse(outputToClient);
-                case "/cat.jpg" -> Response.sendImageResponse(outputToClient);
-                case "/lab1.pdf" -> Response.sendPdfResponse(outputToClient);
-                case "/newspaper" -> JsonResponse.sendJsonResponse(outputToClient);
-                case "/addForm" -> Response.sendFormResponse(outputToClient);
-                //case "/addArticle" -> JsonResponse.sendJsonAddResponse(outputToClient);
-                //case "/deleteArticle" -> JsonResponse.sendJsonDeleteResponse(outputToClient);
-                //case "/updateArticleTitle" -> JsonResponse.sendJsonUpdateResponse(outputToClient);
-                //case "/updateArticleText" -> JsonResponse.sendJsonUpdateTextResponse(outputToClient);
-                default -> Response.sendFaultResponse(outputToClient);
-            }
+            checkUrl(outputToClient, url);
+            var sendResponse = Response.sendResponse(outputToClient);
+
 
             inputFromClient.close();
             outputToClient.close();
@@ -31,6 +24,15 @@ public class Connection {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    private static void checkUrl(OutputStream outputToClient, String url) throws IOException {
+
+        if (url.equals("/newspaper")){
+            JsonResponse.sendNewspaperResponse(outputToClient);
+        } else if (url.equals("/add")){
+            JsonResponse.sendAddResponse(outputToClient);
         }
     }
 }

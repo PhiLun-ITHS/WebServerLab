@@ -7,16 +7,16 @@ import java.util.List;
 
 public class JsonResponse {
 
-    static void sendJsonResponse(OutputStream outputToClient) throws IOException {
+    static void sendNewspaperResponse(OutputStream outputToClient) throws IOException {
 
-        var newspapers = List.of(EntityFunctions.getAllNewspapers());
+        List<Newspaper> getNewspaper = EntityFunctions.getAllNewspapers();
 
         Gson gson = new Gson();
-        String json = gson.toJson(newspapers);
+        String json = gson.toJson(getNewspaper);
 
         byte[] data = json.getBytes(StandardCharsets.UTF_8);
 
-        String header = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-length: " + data.length +"\r\n\r\n";
+        String header = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-length: " + data.length + "\r\n\r\n";
 
         outputToClient.write(header.getBytes());
         outputToClient.write(data);
@@ -24,19 +24,20 @@ public class JsonResponse {
         outputToClient.flush();
     }
 
-    public static void sendJsonAddResponse(OutputStream outputToClient) {
+    public static void sendAddResponse(OutputStream outputToClient) throws IOException {
+/*
+        Gson gson = new Gson();
+        //Newspaper newspaper = new Newspaper();
+        String header = "";
 
-    }
+        Newspaper newspaper = gson.fromJson(header, Newspaper.class);
+        EntityFunctions.addArticle();
 
-    public static void sendJsonDeleteResponse(OutputStream outputToClient) {
 
-    }
+        String json = gson.fromJson()
 
-    public static void sendJsonUpdateResponse(OutputStream outputToClient) {
 
-    }
-
-    public static void sendJsonUpdateTextResponse(OutputStream outputToClient) {
+ */
 
     }
 }

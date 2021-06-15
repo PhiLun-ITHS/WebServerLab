@@ -2,12 +2,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
-import java.util.Scanner;
 
 public class EntityFunctions {
 
     public static EntityManagerFactory emf = Persistence.createEntityManagerFactory("newspaper");
-    static Scanner sc = new Scanner(System.in);
 
     public static List<Newspaper> getAllNewspapers(){
         EntityManager em = emf.createEntityManager();
@@ -40,7 +38,7 @@ public class EntityFunctions {
     }
 
     public static void deleteArticle(int id){
-
+/*
         EntityManager em = emf.createEntityManager();
 
         Newspaper n = em.find(Newspaper.class, id);
@@ -49,7 +47,7 @@ public class EntityFunctions {
         em.remove(n);
         em.getTransaction().commit();
         em.close();
-        /*
+
         System.out.print("Article ID: ");
         int id = sc.nextInt();
         sc.nextLine();
@@ -60,14 +58,14 @@ public class EntityFunctions {
     }
 
     public static void updateArticle(Newspaper newspaper, String newArticleName){
-
+/*
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
         newspaper.setArticle(newArticleName);
         em.getTransaction().commit();
         em.close();
-        /*
+
         System.out.print("ID: ");
         int id = sc.nextInt();
         sc.nextLine();
@@ -81,7 +79,7 @@ public class EntityFunctions {
     }
 
     public static void updateText(Newspaper newspaper, String newTextName){
-
+ /*
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
@@ -89,7 +87,7 @@ public class EntityFunctions {
         em.getTransaction().commit();
         em.close();
 
-        /*
+
         System.out.println("ID: ");
         int id = sc.nextInt();
         sc.nextLine();
