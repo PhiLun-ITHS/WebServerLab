@@ -35,53 +35,53 @@ public class Response {
 
     static void sendAddResponse(OutputStream outputToClient, String url) throws IOException {
 
-/*
-        Newspaper newspaper = new Newspaper(ArticleTitle, ArticleText);
+        String Title = url.substring(url.indexOf("=") + 1, url.indexOf("&"));
 
-        Gson gson = new Gson();
-        String json = gson.toJson(newspaper);
+        String Text = url.substring(url.indexOf("&") + 6);
 
-        byte[] data = json.getBytes(StandardCharsets.UTF_8);
+        Newspaper newspaper = new Newspaper(Title, Text);
+        EntityFunctions.addArticle(newspaper);
 
-        String header = "HTTP/1.1 200 OK\r\nContent-Type: application/json\r\nContent-length: " + data.length + "\r\n\r\n";
-
-        outputToClient.write(header.getBytes());
-        outputToClient.write(data);
-
-        outputToClient.flush();
-
- */
+        sendDefaultResponse(outputToClient);
     }
 
-    public static void sendPngResponse(OutputStream outputToClient, String url) throws IOException{
+    static void sendResponseForm(OutputStream outputToClient, String url) throws IOException {
+        byte[] data = new byte[0];
+
+        File f = Path.of("core/src/main/resources/addForm.html").toFile();
+
+        handleResponse(outputToClient, data, f);
+    }
+
+    static void sendPngResponse(OutputStream outputToClient, String url) throws IOException{
         byte[] data = new byte[0];
 
         File f = Path.of("core/src/main/resources" + url).toFile();
         handleResponse(outputToClient, data, f);
     }
 
-    public static void sendJpgResponse(OutputStream outputToClient, String url) throws IOException{
+    static void sendJpgResponse(OutputStream outputToClient, String url) throws IOException{
         byte[] data = new byte[0];
 
         File f = Path.of("core/src/main/resources" + url).toFile();
         handleResponse(outputToClient, data, f);
     }
 
-    public static void sendPdfResponse(OutputStream outputToClient, String url) throws IOException{
+    static void sendPdfResponse(OutputStream outputToClient, String url) throws IOException{
         byte[] data = new byte[0];
 
         File f = Path.of("core/src/main/resources" + url).toFile();
         handleResponse(outputToClient, data, f);
     }
 
-    public static void sendDefaultResponse(OutputStream outputToClient) throws IOException {
+    static void sendDefaultResponse(OutputStream outputToClient) throws IOException {
         byte[] data = new byte[0];
 
         File f = Path.of("core/src/main/resources/index.html").toFile();
         handleResponse(outputToClient, data, f);
     }
 
-    public static void sendFaultResponse(OutputStream outputToClient) throws IOException {
+    static void sendFaultResponse(OutputStream outputToClient) throws IOException {
         String header = "HTTP/1.1 404 Not Found\r\nContent-length: 0\r\n\r\n";
         outputToClient.write(header.getBytes());
         outputToClient.flush();

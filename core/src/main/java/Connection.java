@@ -41,7 +41,12 @@ public class Connection {
             Response.sendDefaultResponse(outputToClient);
         } else if (url.equals("/index.html")){
             Response.sendDefaultResponse(outputToClient);
-        } else {
+        } else if (url.contains("/addForm")){
+            Response.sendResponseForm(outputToClient, url);
+        } else if (url.contains("/Servlet")){
+            Response.sendAddResponse(outputToClient, url);
+        }
+        else {
             Response.sendFaultResponse(outputToClient);
         }
     }
