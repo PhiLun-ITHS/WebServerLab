@@ -26,19 +26,11 @@ public class EntityFunctions {
         em.persist(newspaper);
         em.getTransaction().commit();
         em.close();
-        /*
-        System.out.print("Article title: ");
-        String articleTitle = sc.nextLine();
-
-        System.out.println("Article text: ");
-        String articleText = sc.nextLine();
-
-        Newspaper n = new Newspaper(articleTitle, articleText);
-*/
     }
+/*
 
     public static void deleteArticle(int id){
-/*
+
         EntityManager em = emf.createEntityManager();
 
         Newspaper n = em.find(Newspaper.class, id);
@@ -54,11 +46,11 @@ public class EntityFunctions {
 
 
 
-         */
+
     }
 
     public static void updateArticle(Newspaper newspaper, String newArticleName){
-/*
+
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
@@ -75,11 +67,11 @@ public class EntityFunctions {
         System.out.print("New Article Title: ");
         String newArticleName = sc.nextLine();
 
-         */
+
     }
 
     public static void updateText(Newspaper newspaper, String newTextName){
- /*
+
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
@@ -97,6 +89,7 @@ public class EntityFunctions {
         System.out.println("New Article Text: ");
         String newTextName = sc.nextLine();
 
-         */
+
     }
+    */
 }

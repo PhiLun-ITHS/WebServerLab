@@ -9,8 +9,10 @@
         <module name="core" />
         <module name="client" />
         <module name="Entity" />
-        <module name="utils" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="utils" target="16" />
+    </bytecodeTargetLevel>
   </component>
 </project>

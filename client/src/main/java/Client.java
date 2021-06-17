@@ -8,12 +8,16 @@ import java.util.Scanner;
 
 public class Client {
 
-    static Scanner sc = new Scanner(System.in);
+    //static Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
         var client = HttpClient.newHttpClient();
 
+        var getNewspaper = HttpRequest.newBuilder(URI.create("http://localhost:5050/newspaper")).build();
+        System.out.println(client.send(getNewspaper, HttpResponse.BodyHandlers.ofString()).body());
+
+/*
         while (true) {
             System.out.println("\nNEWSPAPER MENU");
             System.out.println("---------------");
@@ -24,7 +28,7 @@ public class Client {
             System.out.println("4. Update Article text");
             System.out.println("5. Delete Article");
 
-             */
+
 
             System.out.println("0. Exit");
             System.out.println("---------------");
@@ -40,7 +44,6 @@ public class Client {
                 case 2:
                     addArticle(client);
                     break;
-                    /*
                 case 3:
                     updateArticle();
                     break;
@@ -51,7 +54,7 @@ public class Client {
                     deleteArticle();
                     break;
 
-                     */
+
                 case 0:
                     System.exit(0);
                     break;
@@ -60,10 +63,12 @@ public class Client {
                     break;
             }
         }
+
     }
 
     private static void addArticle(HttpClient client) throws IOException, InterruptedException {
 
+        /*
         System.out.print("Article title: ");
         String articleTitle = sc.nextLine();
 
@@ -76,6 +81,8 @@ public class Client {
         client.send(addArticle, HttpResponse.BodyHandlers.ofString()).body();
     }
 
+
+
     private static void updateArticle() {
 
     }
@@ -87,10 +94,6 @@ public class Client {
     private static void deleteArticle() {
 
     }
-
-
-
-
-
-
+    */
+    }
 }
